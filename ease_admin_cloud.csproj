@@ -9,19 +9,31 @@
 
   <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.13" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.13" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.13">
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.13">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Address\Controllers\" />
+    <Folder Include="Areas\Address\Data\" />
+    <Folder Include="Areas\Address\Models\" />
+    <Folder Include="Areas\Address\Views\" />
   </ItemGroup>
 
 </Project>
