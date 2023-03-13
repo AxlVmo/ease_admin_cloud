@@ -33,7 +33,7 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
         private readonly INotyfService _toastNotification;
-        private readonly ApplicationDbContext _context;
+        private readonly eacDbContext _context;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -41,7 +41,7 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ApplicationDbContext context,
+            eacDbContext context,
             INotyfService toastNotification
         )
         {
@@ -89,6 +89,8 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
 
             [Display(Name = "Confirm password")]
             public string ConfirmPassword { get; set; }
+
+            public bool terms_use {get; set;}
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -144,25 +146,38 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
                     var result = await _userManager.CreateAsync(user, Input.Password);
                     if (result.Succeeded)
                     {
-                        var user_email = user.Email;
-                        var user_username = user.UserName;
-                        var user_id = user.Id;
-                        var addUsuarios = new usuario_control
+                        var f_usuario_control = (
+                            from ta in _context.usuarios_controles
+                            where ta.id_area == 1 & ta.id_rol == 2 & ta.id_perfil == 1
+                            select ta
+                        )
+                            .Distinct()
+                            .ToList();
+
+                        if (f_usuario_control.Count == 0)
                         {
-                            id_usuario_control = Guid.Parse(user_id),
-                            id_usuario_modifico = Guid.Empty,
-                            correo_acceso = user_email,
-                            nombre_usuario = user_username,
-                            id_area = 1,
-                            id_perfil = 1,
-                            id_rol = 1,
-                            terminos_uso = false,
-                            fecha_registro = DateTime.Now,
-                            fecha_actualizacion = DateTime.Now,
-                            id_estatus_registro = 1
-                        };
-                        _context.Add(addUsuarios);
-                        await _context.SaveChangesAsync();
+                            var user_email = user.Email;
+                            var user_username = user.UserName;
+                            var user_id = user.Id;
+                            var user_terms_use = Input.terms_use;
+                            var addUsuarios = new usuario_control
+                            {
+                                id_usuario_control = Guid.Parse(user_id),
+                                id_usuario_modifico = Guid.Empty,
+                                correo_acceso = user_email,
+                                nombre_usuario = user_username,
+                                id_area = 1,
+                                id_perfil = 1,
+                                id_rol = 2,
+                                terminos_uso = user_terms_use,
+                                fecha_registro = DateTime.Now,
+                                fecha_actualizacion = DateTime.Now,
+                                id_estatus_registro = 1
+                            };
+                            _context.Add(addUsuarios);
+                            await _context.SaveChangesAsync();
+                        }
+
                         _logger.LogInformation("User created a new account with password.");
 
                         var userId = await _userManager.GetUserIdAsync(user);

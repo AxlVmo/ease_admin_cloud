@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ease_admin_cloud.Areas.Users.Models
+namespace Identity.Models
 {
     public class usuario
     {

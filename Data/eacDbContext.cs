@@ -2,20 +2,185 @@
 using Microsoft.EntityFrameworkCore;
 using ease_admin_cloud.Areas.Address.Models;
 using ease_admin_cloud.Areas.Users.Models;
+using ease_admin_cloud.Areas.Catalogs.Models;
 
 namespace ease_admin_cloud.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class eacDbContext : IdentityDbContext
     {
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public eacDbContext(DbContextOptions<eacDbContext> options)
             : base(options) { }
 
         public DbSet<cat_codigo_postal> cat_codigos_postales { get; set; } = default!;
         public DbSet<usuario_control> usuarios_controles { get; set; } = default!;
+        public DbSet<cat_estatus> cat_estatus { get; set; } = default!;
+        public DbSet<cat_perfil> cat_perfiles { get; set; } = default!;
+        public DbSet<cat_role> cat_roles { get; set; } = default!;
+        public DbSet<cat_area> cat_areas { get; set; } = default!;
+        public DbSet<cat_genero> cat_generos { get; set; } = default!;
+        public DbSet<cat_categoria> cat_categorias { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder
+                .Entity<cat_estatus>()
+                .HasData(
+                    new cat_estatus
+                    {
+                        id_estatus = 1,
+                        estatus_desc = "ACTIVO",
+                        fecha_registro = DateTime.Today
+                    },
+                    new cat_estatus
+                    {
+                        id_estatus = 2,
+                        estatus_desc = "DESACTIVO",
+                        fecha_registro = DateTime.Today
+                    }
+                );
+
+            modelBuilder
+                .Entity<cat_role>()
+                .HasData(
+                    new cat_role
+                    {
+                        id_rol = 1,
+                        rol_desc = "DESARROLLADOR",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_role
+                    {
+                        id_rol = 2,
+                        rol_desc = "ADMINISTRADOR",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_role
+                    {
+                        id_rol = 3,
+                        rol_desc = "SUPERVISOR",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_role
+                    {
+                        id_rol = 4,
+                        rol_desc = "OPERADOR",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    }
+                );
+            modelBuilder
+                .Entity<cat_perfil>()
+                .HasData(
+                    new cat_perfil
+                    {
+                        id_perfil = 1,
+                        perfil_desc = "DIRECTOR",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_perfil
+                    {
+                        id_perfil = 2,
+                        perfil_desc = "ADMINISTRADOR",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_perfil
+                    {
+                        id_perfil = 3,
+                        perfil_desc = "GERENTE",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_perfil
+                    {
+                        id_perfil = 4,
+                        perfil_desc = "EJECUTIVO",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_perfil
+                    {
+                        id_perfil = 5,
+                        perfil_desc = "DOCENTE",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    }
+                );
+            modelBuilder
+                .Entity<cat_area>()
+                .HasData(
+                    new cat_area
+                    {
+                        id_area = 1,
+                        area_desc = "DIRECCION",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_area
+                    {
+                        id_area = 2,
+                        area_desc = "ADMINISTRATIVA",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_area
+                    {
+                        id_area = 3,
+                        area_desc = "RECURSOS HUMANOS",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_area
+                    {
+                        id_area = 4,
+                        area_desc = "PRODUCCION DIGITAL",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_area
+                    {
+                        id_area = 5,
+                        area_desc = "FINANZAS/CONTABILIDAD",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_area
+                    {
+                        id_area = 6,
+                        area_desc = "MARKETING/VENTAS",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_area
+                    {
+                        id_area = 7,
+                        area_desc = "TIC",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    }
+                );
+            modelBuilder
+                .Entity<cat_genero>()
+                .HasData(
+                    new cat_genero
+                    {
+                        id_genero = 1,
+                        genero_desc = "HOMBRE",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_genero
+                    {
+                        id_genero = 2,
+                        genero_desc = "MUJER",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    }
+                );
             modelBuilder
                 .Entity<cat_codigo_postal>()
                 .HasData(

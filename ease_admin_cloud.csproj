@@ -1,41 +1,48 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>aspnet-ease_admin_cloud-c515c572-2e45-47f4-a1cb-9c48c58cfa49</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>aspnet-ease_admin_cloud-c515c572-2e45-47f4-a1cb-9c48c58cfa49</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.14" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.14">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<PrivateAssets>all</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.12" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Address\Controllers\" />
-    <Folder Include="Areas\Address\Data\" />
-    <Folder Include="Areas\Address\Models\" />
-    <Folder Include="Areas\Address\Views\" />
-    <Folder Include="Areas\Users\Data\" />
-    <Folder Include="Areas\Users\Views\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Areas\Address\Controllers\" />
+		<Folder Include="Areas\Address\Data\" />
+		<Folder Include="Areas\Address\Models\" />
+		<Folder Include="Areas\Address\Views\" />
+		<Folder Include="Areas\Catalogs\Controllers\" />
+		<Folder Include="Areas\Catalogs\Data\" />
+		<Folder Include="Areas\Catalogs\Models\" />
+		<Folder Include="Areas\Catalogs\Views\" />
+		<Folder Include="Areas\Users\Controllers\" />
+		<Folder Include="Areas\Users\Models\" />
+		<Folder Include="Areas\Users\Data\" />
+		<Folder Include="Areas\Users\Views\" />
+		<Folder Include="Migrations\" />
+	</ItemGroup>
 
 </Project>

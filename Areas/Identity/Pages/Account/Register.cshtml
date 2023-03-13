@@ -16,31 +16,31 @@
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <div class="form-group mb-lg">
                         <labe asp-for="Input.Email" l>Correo electrónico</labe>
-                        <input type="email" class="form-control input-lg" asp-for="Input.Email"/>
+                        <input type="email" class="form-control input-lg" asp-for="Input.Email" />
                     </div>
                     <div class="form-group mb-none">
                         <div class="row">
                             <div class="col-sm-6 mb-lg">
                                 <label asp-for="Input.Password">Contraseña</label>
-                                <input type="password" class="form-control input-lg" asp-for="Input.Password"/>
+                                <input type="password" class="form-control input-lg" asp-for="Input.Password" />
                             </div>
                             <div class="col-sm-6 mb-lg">
                                 <label asp-for="Input.ConfirmPassword">Confirmación de contraseña</label>
-                                <input  type="password" class="form-control input-lg" asp-for="Input.ConfirmPassword"/>
+                                <input type="password" class="form-control input-lg" asp-for="Input.ConfirmPassword" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-8">
                             <div class="checkbox-custom checkbox-default">
-                                <input id="AgreeTerms"  type="checkbox" />
-                                <label >Estoy de acuerdo con los <a href="#">términos de uso</a></label>
+                                <input id="AgreeTerms" type="checkbox" asp-for="Input.terms_use" />
+                                <label>Estoy de acuerdo con los <a href="#">términos de uso</a></label>
                             </div>
                         </div>
                         <div class="col-sm-4 text-right">
                             <button id="registerSubmit" type="submit"
                                 class="btn btn-primary hidden-xs">Registrar</button>
-                            <button id="registerSubmit" type="submit"
+                            <button id="registerSubmit_xs" type="submit"
                                 class="btn btn-primary btn-block btn-lg visible-xs mt-lg">Registrar</button>
                         </div>
                     </div>

@@ -50,6 +50,38 @@ namespace ease_admin_cloud.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "cat_areas",
+                columns: table => new
+                {
+                    id_area = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    area_desc = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_areas", x => x.id_area);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "cat_categorias",
+                columns: table => new
+                {
+                    IdCategoria = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CategoriaDesc = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_categorias", x => x.IdCategoria);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "cat_codigos_postales",
                 columns: table => new
                 {
@@ -77,6 +109,69 @@ namespace ease_admin_cloud.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "cat_estatus",
+                columns: table => new
+                {
+                    id_estatus = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    estatus_desc = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_estatus", x => x.id_estatus);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "cat_generos",
+                columns: table => new
+                {
+                    id_genero = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    genero_desc = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_generos", x => x.id_genero);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "cat_perfiles",
+                columns: table => new
+                {
+                    id_perfil = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    perfil_desc = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_perfiles", x => x.id_perfil);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "cat_roles",
+                columns: table => new
+                {
+                    id_rol = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    rol_desc = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_roles", x => x.id_rol);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "usuarios_controles",
                 columns: table => new
                 {
@@ -90,12 +185,12 @@ namespace ease_admin_cloud.Migrations
                     id_perfil = table.Column<int>(type: "integer", nullable: false),
                     id_rol = table.Column<int>(type: "integer", nullable: false),
                     terminos_uso = table.Column<bool>(type: "boolean", nullable: false),
-                    fecha_nacimiento = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    fecha_nacimiento = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     correo_acceso = table.Column<string>(type: "text", nullable: false),
                     profile_picture = table.Column<byte[]>(type: "bytea", nullable: true),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: true),
-                    fecha_registro = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -207,6 +302,20 @@ namespace ease_admin_cloud.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "cat_areas",
+                columns: new[] { "id_area", "area_desc", "fecha_registro", "id_estatus_registro", "id_usuario_modifico" },
+                values: new object[,]
+                {
+                    { 1, "DIRECCION", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 2, "ADMINISTRATIVA", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 3, "RECURSOS HUMANOS", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 4, "PRODUCCION DIGITAL", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 5, "FINANZAS/CONTABILIDAD", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 6, "MARKETING/VENTAS", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 7, "TIC", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") }
                 });
 
             migrationBuilder.InsertData(
@@ -1206,14 +1315,7 @@ namespace ease_admin_cloud.Migrations
                     { 990, "0", "10", "09", "008", "10701", "09", "Héroes de Padierna", "Ciudad de México", "10700", "10701", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1721" },
                     { 991, "0", "10", "09", "008", "10901", "09", "Santa Teresa", "Ciudad de México", "10710", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1723" },
                     { 992, "0", "10", "09", "008", "10581", "09", "La Cruz", "Ciudad de México", "10800", "10581", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1728" },
-                    { 993, "0", "10", "09", "008", "10581", "09", "San Francisco", "Ciudad de México", "10810", "10581", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1730" },
-                    { 994, "0", "10", "09", "008", "10901", "09", "La Guadalupe", "Ciudad de México", "10820", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1731" },
-                    { 995, "0", "10", "09", "008", "10901", "09", "La Concepción", "Ciudad de México", "10830", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1732" },
-                    { 996, "0", "10", "09", "008", "10901", "02", "Las Calles", "Ciudad de México", "10840", "10901", "Ciudad de México", "La Magdalena Contreras", "Barrio", "Urbano", "1733" },
-                    { 997, "0", "10", "09", "008", "10901", "02", "Plazuela del Pedregal", "Ciudad de México", "10840", "10901", "Ciudad de México", "La Magdalena Contreras", "Barrio", "Urbano", "1734" },
-                    { 998, "0", "10", "09", "008", "10901", "28", "San Nicolás Totolapan", "Ciudad de México", "10900", "10901", "Ciudad de México", "La Magdalena Contreras", "Pueblo", "Urbano", "1735" },
-                    { 999, "0", "10", "09", "008", "10581", "28", "La Magdalena", "Ciudad de México", "10910", "10581", "Ciudad de México", "La Magdalena Contreras", "Pueblo", "Urbano", "1737" },
-                    { 1000, "0", "10", "09", "008", "10901", "09", "Las Huertas", "Ciudad de México", "10920", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1738" }
+                    { 993, "0", "10", "09", "008", "10581", "09", "San Francisco", "Ciudad de México", "10810", "10581", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1730" }
                 });
 
             migrationBuilder.InsertData(
@@ -1221,6 +1323,13 @@ namespace ease_admin_cloud.Migrations
                 columns: new[] { "id_codigo_postal", "c_cp", "c_cveCiudad", "c_estado", "c_mnpio", "c_oficina", "c_tipoAsenta", "d_asenta", "d_ciudad", "d_codigo", "d_cp", "d_estado", "d_mnpio", "d_tipoAsenta", "d_zona", "id_asenta_cpcons" },
                 values: new object[,]
                 {
+                    { 994, "0", "10", "09", "008", "10901", "09", "La Guadalupe", "Ciudad de México", "10820", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1731" },
+                    { 995, "0", "10", "09", "008", "10901", "09", "La Concepción", "Ciudad de México", "10830", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1732" },
+                    { 996, "0", "10", "09", "008", "10901", "02", "Las Calles", "Ciudad de México", "10840", "10901", "Ciudad de México", "La Magdalena Contreras", "Barrio", "Urbano", "1733" },
+                    { 997, "0", "10", "09", "008", "10901", "02", "Plazuela del Pedregal", "Ciudad de México", "10840", "10901", "Ciudad de México", "La Magdalena Contreras", "Barrio", "Urbano", "1734" },
+                    { 998, "0", "10", "09", "008", "10901", "28", "San Nicolás Totolapan", "Ciudad de México", "10900", "10901", "Ciudad de México", "La Magdalena Contreras", "Pueblo", "Urbano", "1735" },
+                    { 999, "0", "10", "09", "008", "10581", "28", "La Magdalena", "Ciudad de México", "10910", "10581", "Ciudad de México", "La Magdalena Contreras", "Pueblo", "Urbano", "1737" },
+                    { 1000, "0", "10", "09", "008", "10901", "09", "Las Huertas", "Ciudad de México", "10920", "10901", "Ciudad de México", "La Magdalena Contreras", "Colonia", "Urbano", "1738" },
                     { 1001, "0", "10", "09", "008", "10901", "04", "Tierra Colorada", "Ciudad de México", "10926", "10901", "Ciudad de México", "La Magdalena Contreras", "Campamento", "Urbano", "1739" },
                     { 1002, "0", "11", "09", "016", "11801", "09", "Lomas de Chapultepec I Sección", "Ciudad de México", "11000", "11801", "Ciudad de México", "Miguel Hidalgo", "Colonia", "Urbano", "1745" },
                     { 1003, "0", "11", "09", "016", "11801", "09", "Lomas de Chapultepec VIII Sección", "Ciudad de México", "11000", "11801", "Ciudad de México", "Miguel Hidalgo", "Colonia", "Urbano", "2774" },
@@ -1739,6 +1848,47 @@ namespace ease_admin_cloud.Migrations
                     { 1516, "0", "16", "09", "013", "16001", "28", "San Francisco Tlalnepantla", "Ciudad de México", "16900", "16001", "Ciudad de México", "Xochimilco", "Pueblo", "Urbano", "2530" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "cat_estatus",
+                columns: new[] { "id_estatus", "estatus_desc", "fecha_registro", "id_usuario_modifico" },
+                values: new object[,]
+                {
+                    { 1, "ACTIVO", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 2, "DESACTIVO", new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), new Guid("00000000-0000-0000-0000-000000000000") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "cat_generos",
+                columns: new[] { "id_genero", "fecha_registro", "genero_desc", "id_estatus_registro", "id_usuario_modifico" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), "HOMBRE", 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 2, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), "MUJER", 1, new Guid("00000000-0000-0000-0000-000000000000") }
+                });
+
+            migrationBuilder.InsertData(
+                table: "cat_perfiles",
+                columns: new[] { "id_perfil", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "perfil_desc" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DIRECTOR" },
+                    { 2, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "ADMINISTRADOR" },
+                    { 3, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "GERENTE" },
+                    { 4, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "EJECUTIVO" },
+                    { 5, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DOCENTE" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "cat_roles",
+                columns: new[] { "id_rol", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "rol_desc" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DESARROLLADOR" },
+                    { 2, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "ADMINISTRADOR" },
+                    { 3, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "SUPERVISOR" },
+                    { 4, new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "OPERADOR" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -1795,7 +1945,25 @@ namespace ease_admin_cloud.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "cat_areas");
+
+            migrationBuilder.DropTable(
+                name: "cat_categorias");
+
+            migrationBuilder.DropTable(
                 name: "cat_codigos_postales");
+
+            migrationBuilder.DropTable(
+                name: "cat_estatus");
+
+            migrationBuilder.DropTable(
+                name: "cat_generos");
+
+            migrationBuilder.DropTable(
+                name: "cat_perfiles");
+
+            migrationBuilder.DropTable(
+                name: "cat_roles");
 
             migrationBuilder.DropTable(
                 name: "usuarios_controles");
