@@ -15,23 +15,26 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           	<div class="form-group">
+												<label class="col-md-3 control-label" asp-for="area_desc"></label>
+												<div class="col-md-6">
+													<div class="input-group input-group-icon">
+														<input type="text" class="form-control" placeholder="Right icon" asp-for="area_desc">
+														<span class="input-group-addon">
+															<span class="icon"><i class="fa fa-user"></i></span>
+														</span>
+													</div>
+                                                    <span asp-validation-for="area_desc" class="text-danger"></span>
+												</div>
+											</div>
             <div class="form-group">
-                <label asp-for="area_desc" class="control-label"></label>
-                <input asp-for="area_desc" class="form-control" />
-                <span asp-validation-for="area_desc" class="text-danger"></span>
-            </div>
-           
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                 <a asp-action="Index" class="btn btn-secondary">Regresar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
 }
