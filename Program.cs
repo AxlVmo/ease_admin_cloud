@@ -21,7 +21,7 @@ namespace ease_admin_cloud
             builder.Services.AddDbContext<Data.eacDbContext>(
                 options => options.UseNpgsql(connectionString)
             );
-             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -60,6 +60,10 @@ namespace ease_admin_cloud
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.MapControllerRoute(
+                name: "Areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}"

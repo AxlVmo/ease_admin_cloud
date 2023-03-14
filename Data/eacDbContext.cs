@@ -116,7 +116,7 @@ namespace ease_admin_cloud.Data
                     new cat_area
                     {
                         id_area = 1,
-                        area_desc = "DIRECCION",
+                        area_desc = "DIRECCIÓN",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
@@ -137,21 +137,21 @@ namespace ease_admin_cloud.Data
                     new cat_area
                     {
                         id_area = 4,
-                        area_desc = "PRODUCCION DIGITAL",
+                        area_desc = "PRODUCCIÓN DIGITAL",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
                     new cat_area
                     {
                         id_area = 5,
-                        area_desc = "FINANZAS/CONTABILIDAD",
+                        area_desc = "FINANZAS / CONTABILIDAD",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
                     new cat_area
                     {
                         id_area = 6,
-                        area_desc = "MARKETING/VENTAS",
+                        area_desc = "MÁRKETING / VENTAS",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },

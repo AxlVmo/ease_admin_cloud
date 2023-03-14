@@ -1,0 +1,60 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<ease_admin_cloud.Areas.Catalogs.Models.cat_area>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogos Empresas/</span> Áreas</h4>
+<p>
+    <a type="submit" class="btn btn-defaul" asp-action="Create"><i class="fas fa-plus" style="color: #4DD79C;"></i>
+        Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.area_desc)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.fecha_registro)
+            </th>
+            <th style="text-align:center">
+                @Html.DisplayNameFor(model => model.id_estatus_registro)
+            </th>
+            <th style="text-align:center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.area_desc)
+                </td>
+                <td style="text-align:center">
+                    @Html.DisplayFor(modelItem => item.fecha_registro)
+                </td>
+                <td style="text-align:center">
+                    @if (item.id_estatus_registro == 1)
+                    {
+                        <i class="fas fa-check-circle" style="font-size: 1em; color: #4DD79C;"></i>
+                    }
+                    else
+                    {
+                        <i class="fas fa-stop-circle" style="font-size: 1em; color: #D64B4B;"></i>
+                    }
+                </td>
+                <td style="text-align:center">
+                    <a asp-action="Edit" asp-route-id="@item.id_area" title="Editar"><i class="fa-solid fa-pencil"
+                            style="color: #D7be4d;"></i></a>&nbsp;&nbsp;
+                    <a asp-action="Details" asp-route-id="@item.id_area" title="Detalles"><i class="fa-solid fa-circle-info"
+                            style="color: #0090D9;"></i></a>&nbsp;&nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.id_area" title="Desactivar"><i class="fa-solid fa-square-minus"
+                            style="color: #D64B4B;"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

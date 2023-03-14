@@ -14,10 +14,12 @@ namespace ease_admin_cloud.Areas.Catalogs.Models
 
         [Display(Name = "Descripción")]
         [DataType(DataType.Text)]
-        
+        [Required(ErrorMessage = "Campo Requrido")]
+
         public string area_desc { get; set; } = string.Empty;
 
         [Display(Name = "Usuario Modifico")]
+
         public Guid id_usuario_modifico { get; set; }
 
         [Column("fecha_registro")]
