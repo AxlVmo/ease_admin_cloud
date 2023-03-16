@@ -45,7 +45,11 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Campo Requrido")]
+            [RegularExpression(
+                "^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$",
+                ErrorMessage = "El correo no es válido"
+            )]
             [EmailAddress]
             public string Email { get; set; }
         }

@@ -28,7 +28,7 @@ namespace ease_admin_cloud.Areas.Catalogs.Models
         public DateTime fecha_registro { get; set; }
 
         [Display(Name = "Estatus")]
-        
+        [Required(ErrorMessage = "Campo Requrido")]
         public int id_estatus_registro { get; set; }
     }
 }

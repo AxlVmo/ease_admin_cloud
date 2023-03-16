@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace ease_admin_cloud
 {
@@ -37,9 +38,13 @@ namespace ease_admin_cloud
                 config.IsDismissable = true;
                 config.Position = NotyfPosition.BottomRight;
             });
-
+            builder.Services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
             var app = builder.Build();
-
+            app.UseForwardedHeaders();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {

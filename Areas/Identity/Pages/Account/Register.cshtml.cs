@@ -81,16 +81,24 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Display(Name = "Email")]
+           
+            [Required(ErrorMessage = "Campo Requrido")]
+            [RegularExpression(
+                "^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$",
+                ErrorMessage = "El correo no es válido"
+            )]
+             [EmailAddress]
             public string Email { get; set; }
 
-            [Display(Name = "Password")]
+            [DataType(DataType.Password)]
+            [Required(ErrorMessage = "Campo Requrido")]
             public string Password { get; set; }
 
-            [Display(Name = "Confirm password")]
+            [DataType(DataType.Password)]
+            [Required(ErrorMessage = "Campo Requrido")]
             public string ConfirmPassword { get; set; }
 
-            public bool terms_use {get; set;}
+            public bool terms_use { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -166,8 +174,8 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
                                 id_usuario_modifico = Guid.Empty,
                                 correo_acceso = user_email,
                                 nombre_usuario = user_username,
-                                id_area = 1,
-                                id_perfil = 1,
+                                id_area = 2,
+                                id_perfil = 2,
                                 id_rol = 2,
                                 terminos_uso = user_terms_use,
                                 fecha_registro = DateTime.Now,

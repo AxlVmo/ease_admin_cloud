@@ -5,7 +5,7 @@
 <section class="body-sign">
     <div class="center-sign">
         <a href="/" class="logo pull-left">
-            <img src="assets/images/logo.png" height="54" alt="logo_registro" />
+            <img src="/template/assets/images/logo.png" height="54" alt="logo_registro" />
         </a>
         <div class="panel panel-sign">
             <div class="panel-title-sign mt-xl text-right">
@@ -15,18 +15,51 @@
             <div class="panel-body">
                 <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
                     <div class="form-group mb-lg">
-                        <labe asp-for="Input.Email" l>Correo electrónico</labe>
-                        <input type="email" class="form-control input-lg" asp-for="Input.Email" />
+                        <label asp-for="Input.Email">Nombre de usuario</label>
+                        <div class="input-group input-group-icon">
+                            <input type="text" class="form-control input-lg" asp-for="Input.Email" />
+                            <span class="input-group-addon">
+                                <span class="icon icon-lg">
+                                    <i class="fa-regular fa-user"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
                     <div class="form-group mb-none">
                         <div class="row">
                             <div class="col-sm-6 mb-lg">
-                                <label asp-for="Input.Password">Contraseña</label>
-                                <input type="password" class="form-control input-lg" asp-for="Input.Password" />
+                                <div class="form-group mb-lg">
+                                    <div class="clearfix">
+                                        <label class="pull-left" asp-for="Input.Password">Contraseña</label>
+                                    </div>
+                                    <div class="input-group input-group-icon">
+                                        <input type="password" class="form-control input-lg" asp-for="Input.Password" />
+                                        <span class="input-group-addon">
+                                            <span class="icon icon-lg">
+                                                <i class="fa-solid fa-key"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
                             </div>
                             <div class="col-sm-6 mb-lg">
-                                <label asp-for="Input.ConfirmPassword">Confirmación de contraseña</label>
-                                <input type="password" class="form-control input-lg" asp-for="Input.ConfirmPassword" />
+                                <div class="form-group mb-lg">
+                                    <div class="clearfix">
+                                        <label class="pull-left" asp-for="Input.ConfirmPassword">Contraseña</label>
+                                    </div>
+                                    <div class="input-group input-group-icon">
+                                        <input type="password" class="form-control input-lg"
+                                            asp-for="Input.ConfirmPassword" />
+                                        <span class="input-group-addon">
+                                            <span class="icon icon-lg">
+                                                <i class="fa-solid fa-key"></i>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -52,7 +85,7 @@
                 </form>
             </div>
         </div>
-        <p class="text-center text-muted mt-md mb-md">&copy; Copyright 2023. All Rights Reserved.</p>
+        <p class="text-center text-muted mt-md mb-md">&copy; Copyright 2023. Todos los derechos reservados.</p>
     </div>
 </section>
 <!-- end: page -->
