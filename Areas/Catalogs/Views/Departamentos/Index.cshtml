@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@model IEnumerable<ease_admin_cloud.Areas.Catalogs.Models.cat_area>
+@model IEnumerable<ease_admin_cloud.Areas.Catalogs.Models.cat_departamento>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,7 +15,7 @@
     <thead>
         <tr>
             <th style="text-align:center">
-                @Html.DisplayNameFor(model => model.area_desc)
+                @Html.DisplayNameFor(model => model.departamento_desc)
             </th>
             <th style="text-align:center">
                 @Html.DisplayNameFor(model => model.fecha_registro)
@@ -31,7 +31,7 @@
         {
             <tr>
                 <td style="text-align:center">
-                    @Html.DisplayFor(modelItem => item.area_desc)
+                    @Html.DisplayFor(modelItem => item.departamento_desc)
                 </td>
                 <td style="text-align:center">
                     @Html.DisplayFor(modelItem => item.fecha_registro)
@@ -47,11 +47,11 @@
                     }
                 </td>
                 <td style="text-align:center">
-                    <a asp-action="Edit" asp-route-id="@item.id_area" title="Editar"><i class="fa-solid fa-pencil"
+                    <a asp-action="Edit" asp-route-id="@item.id_departamento" title="Editar"><i class="fa-solid fa-pencil"
                             style="color: #D7be4d;"></i></a>&nbsp;&nbsp;
-                    <a asp-action="Details" asp-route-id="@item.id_area" title="Detalles"><i class="fa-solid fa-circle-info"
+                    <a asp-action="Details" asp-route-id="@item.id_departamento" title="Detalles"><i class="fa-solid fa-circle-info"
                             style="color: #0090D9;"></i></a>&nbsp;&nbsp;
-                    <a asp-action="Delete" asp-route-id="@item.id_area" title="Desactivar"><i class="fa-solid fa-square-minus"
+                    <a asp-action="Delete" asp-route-id="@item.id_departamento" title="Desactivar"><i class="fa-solid fa-square-minus"
                             style="color: #D64B4B;"></i></a>
                 </td>
             </tr>

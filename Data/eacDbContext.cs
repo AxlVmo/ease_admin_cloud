@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ease_admin_cloud.Areas.Address.Models;
 using ease_admin_cloud.Areas.Users.Models;
 using ease_admin_cloud.Areas.Catalogs.Models;
+using ease_admin_cloud.Areas.Company.Models;
 
 namespace ease_admin_cloud.Data
 {
@@ -16,9 +17,13 @@ namespace ease_admin_cloud.Data
         public DbSet<cat_estatus> cat_estatus { get; set; } = default!;
         public DbSet<cat_perfil> cat_perfiles { get; set; } = default!;
         public DbSet<cat_role> cat_roles { get; set; } = default!;
-        public DbSet<cat_area> cat_areas { get; set; } = default!;
+        public DbSet<cat_departamento> cat_departamentos { get; set; } = default!;
+        public DbSet<cat_sub_departamento> cat_subs_departamentos { get; set; } = default!;
         public DbSet<cat_genero> cat_generos { get; set; } = default!;
         public DbSet<cat_categoria> cat_categorias { get; set; } = default!;
+        public DbSet<cat_empresa> cat_empresas { get; set; } = default!;
+        public DbSet<cat_centro> cat_centros { get; set; } = default!;
+        public DbSet<cat_corporativo> cat_corporativos { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -111,54 +116,54 @@ namespace ease_admin_cloud.Data
                     }
                 );
             modelBuilder
-                .Entity<cat_area>()
+                .Entity<cat_departamento>()
                 .HasData(
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 1,
-                        area_desc = "DIRECCIÓN",
+                        id_departamento = 1,
+                        departamento_desc = "DIRECCIÓN",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 2,
-                        area_desc = "ADMINISTRATIVA",
+                        id_departamento = 2,
+                        departamento_desc = "ADMINISTRATIVA",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 3,
-                        area_desc = "RECURSOS HUMANOS",
+                        id_departamento = 3,
+                        departamento_desc = "RECURSOS HUMANOS",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 4,
-                        area_desc = "PRODUCCIÓN DIGITAL",
+                        id_departamento = 4,
+                        departamento_desc = "PRODUCCIÓN DIGITAL",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 5,
-                        area_desc = "FINANZAS / CONTABILIDAD",
+                        id_departamento = 5,
+                        departamento_desc = "FINANZAS / CONTABILIDAD",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 6,
-                        area_desc = "MÁRKETING / VENTAS",
+                        id_departamento = 6,
+                        departamento_desc = "MÁRKETING / VENTAS",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     },
-                    new cat_area
+                    new cat_departamento
                     {
-                        id_area = 7,
-                        area_desc = "TIC",
+                        id_departamento = 7,
+                        departamento_desc = "TIC",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     }

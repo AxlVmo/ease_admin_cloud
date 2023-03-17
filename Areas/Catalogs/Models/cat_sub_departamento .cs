@@ -6,20 +6,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ease_admin_cloud.Areas.Catalogs.Models
 {
-    public partial class cat_area
+    public partial class cat_sub_departamento
     {
         [Key]
-        
-        public int id_area { get; set; }
+         [Display(Name = "Id Sub Departamento")]
+        public int id_sub_departamento { get; set; }
 
         [Display(Name = "Descripción")]
         [DataType(DataType.Text)]
         [Required(ErrorMessage = "Campo Requrido")]
-
-        public string area_desc { get; set; } = string.Empty;
+        public string sub_departamento_desc { get; set; } = string.Empty;
 
         [Display(Name = "Usuario Modifico")]
-
         public Guid id_usuario_modifico { get; set; }
 
         [Column("fecha_registro")]
@@ -30,5 +28,9 @@ namespace ease_admin_cloud.Areas.Catalogs.Models
         [Display(Name = "Estatus")]
         [Required(ErrorMessage = "Campo Requrido")]
         public int id_estatus_registro { get; set; }
+
+        [Display(Name = "Id Departamento")]
+        [Required(ErrorMessage = "Campo Requrido")]
+        public int id_departamento { get; set; }
     }
 }

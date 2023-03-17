@@ -12,7 +12,7 @@ using ease_admin_cloud.Data;
 namespace ease_admin_cloud.Migrations
 {
     [DbContext(typeof(eacDbContext))]
-    [Migration("20230312190542_m001")]
+    [Migration("20230316221918_m001")]
     partial class m001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28904,90 +28904,6 @@ namespace ease_admin_cloud.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_area", b =>
-                {
-                    b.Property<int>("id_area")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_area"));
-
-                    b.Property<string>("area_desc")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("fecha_registro")
-                        .HasColumnType("timestamp without time zone")
-                        .HasColumnName("fecha_registro");
-
-                    b.Property<int>("id_estatus_registro")
-                        .HasColumnType("integer");
-
-                    b.Property<Guid>("id_usuario_modifico")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("id_area");
-
-                    b.ToTable("cat_areas");
-
-                    b.HasData(
-                        new
-                        {
-                            id_area = 1,
-                            area_desc = "DIRECCION",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            id_area = 2,
-                            area_desc = "ADMINISTRATIVA",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            id_area = 3,
-                            area_desc = "RECURSOS HUMANOS",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            id_area = 4,
-                            area_desc = "PRODUCCION DIGITAL",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            id_area = 5,
-                            area_desc = "FINANZAS/CONTABILIDAD",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            id_area = 6,
-                            area_desc = "MARKETING/VENTAS",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        },
-                        new
-                        {
-                            id_area = 7,
-                            area_desc = "TIC",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
-                            id_estatus_registro = 1,
-                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
-                        });
-                });
-
             modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_categoria", b =>
                 {
                     b.Property<int>("IdCategoria")
@@ -29012,6 +28928,91 @@ namespace ease_admin_cloud.Migrations
                     b.HasKey("IdCategoria");
 
                     b.ToTable("cat_categorias");
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_departamento", b =>
+                {
+                    b.Property<int>("id_departamento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_departamento"));
+
+                    b.Property<string>("departamento_desc")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("id_departamento");
+
+                    b.ToTable("cat_departamentos");
+
+                    b.HasData(
+                        new
+                        {
+                            id_departamento = 1,
+                            departamento_desc = "DIRECCIÓN",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            id_departamento = 2,
+                            departamento_desc = "ADMINISTRATIVA",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            id_departamento = 3,
+                            departamento_desc = "RECURSOS HUMANOS",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            id_departamento = 4,
+                            departamento_desc = "PRODUCCIÓN DIGITAL",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            id_departamento = 5,
+                            departamento_desc = "FINANZAS / CONTABILIDAD",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            id_departamento = 6,
+                            departamento_desc = "MÁRKETING / VENTAS",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            id_departamento = 7,
+                            departamento_desc = "TIC",
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
+                        });
                 });
 
             modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_estatus", b =>
@@ -29041,14 +29042,14 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_estatus = 1,
                             estatus_desc = "ACTIVO",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
                         new
                         {
                             id_estatus = 2,
                             estatus_desc = "DESACTIVO",
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         });
                 });
@@ -29082,7 +29083,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_genero = 1,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             genero_desc = "HOMBRE",
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
@@ -29090,7 +29091,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_genero = 2,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             genero_desc = "MUJER",
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
@@ -29126,7 +29127,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 1,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "DIRECTOR"
@@ -29134,7 +29135,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 2,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "ADMINISTRADOR"
@@ -29142,7 +29143,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 3,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "GERENTE"
@@ -29150,7 +29151,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 4,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "EJECUTIVO"
@@ -29158,7 +29159,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 5,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "DOCENTE"
@@ -29194,7 +29195,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 1,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "DESARROLLADOR"
@@ -29202,7 +29203,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 2,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "ADMINISTRADOR"
@@ -29210,7 +29211,7 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 3,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "SUPERVISOR"
@@ -29218,11 +29219,41 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 4,
-                            fecha_registro = new DateTime(2023, 3, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "OPERADOR"
                         });
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_sub_departamento", b =>
+                {
+                    b.Property<int>("id_sub_departamento")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_sub_departamento"));
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<int>("id_departamento")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("sub_departamento_desc")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id_sub_departamento");
+
+                    b.ToTable("cat_subs_departamentos");
                 });
 
             modelBuilder.Entity("ease_admin_cloud.Areas.Users.Models.usuario_control", b =>

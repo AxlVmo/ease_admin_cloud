@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@model ease_admin_cloud.Areas.Catalogs.Models.cat_area
+@model ease_admin_cloud.Areas.Catalogs.Models.cat_departamento
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <form asp-action="Edit">
          
-            <input type="hidden" asp-for="id_area" />
+            <input type="hidden" asp-for="id_departamento" />
             <section class="panel">
                 <header class="panel-heading">
                     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogos Empresas / </span>Editar
@@ -18,15 +18,15 @@
                 </header>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-md-3 control-label" asp-for="area_desc"></label>
+                        <label class="col-md-3 control-label" asp-for="departamento_desc"></label>
                         <div class="col-md-6">
                             <div class="input-group input-group-icon">
-                                <input type="text" class="form-control" placeholder="Área" asp-for="area_desc">
+                                <input type="text" class="form-control" placeholder="Área" asp-for="departamento_desc">
                                 <span class="input-group-addon">
                                     <span class="icon"><i class="fa-solid fa-briefcase"></i></span>
                                 </span>
                             </div>
-                           <span asp-validation-for="area_desc" class="text-danger"></span>
+                           <span asp-validation-for="departamento_desc" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">

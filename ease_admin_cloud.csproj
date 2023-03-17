@@ -40,6 +40,10 @@
 		<Folder Include="Areas\Users\Models\" />
 		<Folder Include="Areas\Users\Data\" />
 		<Folder Include="Areas\Users\Views\" />
+		<Folder Include="Areas\Company\Controllers\" />
+		<Folder Include="Areas\Company\Models\" />
+		<Folder Include="Areas\Company\Data\" />
+		<Folder Include="Areas\Company\Views\" />
 		<Folder Include="Migrations\" />
 	</ItemGroup>
 
