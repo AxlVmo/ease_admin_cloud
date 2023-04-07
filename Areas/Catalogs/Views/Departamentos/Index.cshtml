@@ -6,9 +6,10 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogos Empresas/</span> Áreas</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogos Operativos/</span> Áreas</h4>
 <p>
-    <a type="submit" class="btn btn-defaul" asp-action="Create"><i class="fas fa-plus" style="color: #4DD79C;"></i>
+    <a id="iNuevo" type="submit" class="btn btn-defaul" asp-action="Create" hidden="hidden">
+        <i class="fas fa-plus" style="color: #4DD79C;"></i>
         Nuevo</a>
 </p>
 <table class="table">
@@ -34,7 +35,7 @@
                     @Html.DisplayFor(modelItem => item.departamento_desc)
                 </td>
                 <td style="text-align:center">
-                    @Html.DisplayFor(modelItem => item.fecha_registro)
+                    @Html.DisplayFor(modelItem => item.fecha_actualizacion)
                 </td>
                 <td style="text-align:center">
                     @if (item.id_estatus_registro == 1)
@@ -49,12 +50,41 @@
                 <td style="text-align:center">
                     <a asp-action="Edit" asp-route-id="@item.id_departamento" title="Editar"><i class="fa-solid fa-pencil"
                             style="color: #D7be4d;"></i></a>&nbsp;&nbsp;
-                    <a asp-action="Details" asp-route-id="@item.id_departamento" title="Detalles"><i class="fa-solid fa-circle-info"
-                            style="color: #0090D9;"></i></a>&nbsp;&nbsp;
-                    <a asp-action="Delete" asp-route-id="@item.id_departamento" title="Desactivar"><i class="fa-solid fa-square-minus"
-                            style="color: #D64B4B;"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.id_departamento" title="Detalles"><i
+                            class="fa-solid fa-circle-info" style="color: #0090D9;"></i></a>&nbsp;&nbsp;
+                    <a asp-action="Delete" asp-route-id="@item.id_departamento" title="Desactivar"><i
+                            class="fa-solid fa-square-minus" style="color: #D64B4B;"></i></a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tblProductos').DataTable();
+            var estatus_flag = '@ViewBag.EstatusFlag'
+            var empresa_flag = '@ViewBag.EmpresaFlag'
+            var corporativo_flag = '@ViewBag.CorporativoFlag'
+            if (estatus_flag == 0) {
+                document.getElementById("iNuevo").style.visibility = "hidden";
+            }
+            else {
+                if (empresa_flag == 0) {
+                    document.getElementById("iNuevo").style.visibility = "hidden";
+                }
+                else {
+                    if (corporativo_flag == 0) {
+                        document.getElementById("iNuevo").style.visibility = "hidden";
+                    }
+                    else {
+                        document.getElementById("iNuevo").style.visibility = "visible";
+                    }
+                }
+            }
+        });
+    </script>
+}

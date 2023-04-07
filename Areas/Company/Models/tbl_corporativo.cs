@@ -1,60 +1,66 @@
-﻿using System;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Linq;
 
-#nullable disable
-
-namespace WebAdmin.Models
+namespace ease_admin_cloud.Areas.Company.Models
 {
-    public partial class tbl_corporativo
+    public class tbl_corporativo
     {
         [Key]
-        public Guid IdCorporativo { get; set; }
+        public Guid id_corporativo { get; set; }
 
         [Display(Name = "Nombre de Corporativo")]
         [Required(ErrorMessage = "Campo Requerido")]
-        public string NombreCorporativo { get; set; }
+        public string nombre_corporativo { get; set; } = string.Empty;
 
         [Display(Name = "Calle")]
-        public string Calle { get; set; }
+        public string calle { get; set; } = string.Empty;
 
         [Display(Name = "Codigo Postal")]
-        public string CodigoPostal { get; set; }
+        public string codigo_postal { get; set; } = string.Empty;
 
-        public string IdColonia { get; set; }
+        public string id_colonia { get; set; } = string.Empty;
 
         [Display(Name = "Colonia")]
-        public string Colonia { get; set; }
+        public string colonia { get; set; } = string.Empty;
 
         [Display(Name = "Localidad / Municipio")]
-        public string LocalidadMunicipio { get; set; }
+        public string localidad_municipio { get; set; } = string.Empty;
 
         [Display(Name = "Ciudad")]
-        public string Ciudad { get; set; }
+        public string ciudad { get; set; } = string.Empty;
 
         [Display(Name = "Estado")]
-        public string Estado { get; set; }
+        public string estado { get; set; } = string.Empty;
 
         [Display(Name = "Correo Electronico")]
         [Required(ErrorMessage = "Campo Requerido")]
-        public string CorreoElectronico { get; set; }
+        public string correo_electronico { get; set; } = string.Empty;
 
         [Display(Name = "Telefono")]
-        public string Telefono { get; set; }
+        public string telefono { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Campo Requerido")]
-        public Guid IdEmpresa { get; set; }
+        public Guid id_empresa { get; set; }
 
         [Display(Name = "Usuario Modifico")]
-        public Guid IdUsuarioModifico { get; set; }
+        public Guid id_usuario_modifico { get; set; }
 
-        [Column("FechaRegistro")]
+        [NotMapped]
+        [Display(Name = "Usuario Modifico")]
+        public string usuario_modifico_desc { get; set; } = string.Empty;
+
+        [Column("fecha_registro")]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha Registro")]
-        public DateTime FechaRegistro { get; set; }
+        public DateTime fecha_registro { get; set; }
+
+        [Display(Name = "Fecha de Actualización")]
+        [DataType(DataType.Date)]
+        public DateTime fecha_actualizacion { get; set; }
 
         [Display(Name = "Estatus")]
-        [Required(ErrorMessage = "Campo Requerido")]
-        public int IdEstatusRegistro { get; set; }
+        [Required(ErrorMessage = "Campo Requrido")]
+        public int id_estatus_registro { get; set; }
     }
 }

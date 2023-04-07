@@ -26,6 +26,8 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
         private readonly ILogger<LoginModel> _logger;
         private readonly INotyfService _toastNotification;
         private readonly eacDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
+
 
         public LoginModel(
             SignInManager<IdentityUser> signInManager,

@@ -1,0 +1,168 @@
+﻿@using ease_admin_cloud.Models;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model FileUploadViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Información</li>
+        <li class="breadcrumb-item">Archivos</li>
+        <li class="breadcrumb-item active" aria-current="page">Control de Archivos</li>
+    </ol>
+</nav>
+<hr />
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success alert-dismissible" style="margin-top:20px">
+        @ViewBag.Message
+    </div>
+}
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <section class="panel">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                        <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+                        <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+                    </div>
+
+                    <h2 class="panel-title">Form without labels</h2>
+
+                    <p class="panel-subtitle">
+                        You can use placeholders instead of label like this example.
+                    </p>
+                </header>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Subir archivo</label>
+                                <div class="col-md-7">
+                                    <div class="fileupload fileupload-new" data-provides="fileupload">
+                                        <div class="input-append">
+                                            <div class="uneditable-input">
+                                                <i class="fa fa-file fileupload-exists"></i>
+                                                <span class="fileupload-preview"></span>
+                                            </div>
+                                            <span class="btn btn-default btn-file">
+                                                <span class="fileupload-exists">Cambiar</span>
+                                                <span class="fileupload-new">Seleccione Archivo</span>
+                                                <input type="file" name="files" multiple required
+                                                    oninvalid="ths.setCustomValidity('Seleccionar un Archivo')"
+                                                    oninput="setCustomValidity('')" />
+                                            </span>
+                                            <a href="#" class="btn btn-default fileupload-exists"
+                                                data-dismiss="fileupload">Eliminar</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <input spellcheck="true" type="text" autocomplete="off" placeholder="Descripción"
+                                name="description" class="form-control" required
+                                oninvalid="ths.setCustomValidity('Campo Requerido')" oninput="setCustomValidity('')" />
+                        </div>
+                    </div>
+                </div>
+                <footer class="panel-footer">
+                    <button type="submit" class="btn btn-success" asp-controller="File"
+                        asp-action="UploadToFileSystem">Subir al sistema de archivos</button>
+                    <button class="btn btn-success" type="submit" asp-controller="File"
+                        asp-action="UploadToDatabase">Subir a la base de datos</button>
+                </footer>
+            </section>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <hr />
+    <h4>Archivos en el sistema de archivos</h4>
+    @if (Model.FilesOnFileSystem.Count == 0)
+    {
+        <caption>Sin Registros</caption>
+    }
+    else
+    {
+        <caption>Lista de archivos en sistema</caption>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Tipo Archivo</th>
+                    <th>Fecha de Creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Model.FilesOnFileSystem)
+                {
+                    <tr>
+                        <th>@file.Id</th>
+                        <td>@file.Name</td>
+                        <td>@file.Description</td>
+                        <td>@file.FileType</td>
+                        <td>@file.CreatedOn</td>
+                        <td>
+                            @*<a type="button" class="btn btn-success" asp-controller="File" asp-action="UploadToCPs"
+                    asp-route-id="@file.Id" disabled>Subir</a>*@
+                            <a type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromFileSystem"
+                        asp-route-id="@file.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div class="row">
+    <hr />
+    <h4>Archivos en la base de datos</h4>
+    @if (Model.FilesOnDatabase.Count == 0)
+    {
+        <caption>Sin Registros</caption>
+    }
+    else
+    {
+        <caption>Lista de archivos en la base de datos</caption>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Tipo Archivo</th>
+                    <th>Fecha de Creación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var file in Model.FilesOnDatabase)
+                {
+                    <tr>
+                        <th>@file.Id</th>
+                        <td>@file.Name</td>
+                        <td>@file.Description</td>
+                        <td>@file.FileType</td>
+                        <td>@file.CreatedOn</td>
+                        <td>
+                            @*<a type="button" class="btn btn-success" asp-controller="File"
+                    asp-action="DownloadFileFromDatabase" asp-route-id="@file.Id">Subir</a>*@
+                            <a type="button" class="btn btn-danger" asp-controller="File" asp-action="DeleteFileFromDatabase"
+                        asp-route-id="@file.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    }
+</div>

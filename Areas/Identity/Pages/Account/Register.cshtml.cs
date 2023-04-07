@@ -35,6 +35,7 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
         private readonly INotyfService _toastNotification;
         private readonly eacDbContext _context;
 
+
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
@@ -155,7 +156,7 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
                     if (result.Succeeded)
                     {
                         var f_usuario_control = (
-                            from ta in _context.usuarios_controles
+                            from ta in _context.tbl_usuarios_controles
                             where ta.id_area == 1 & ta.id_rol == 2 & ta.id_perfil == 1
                             select ta
                         )
@@ -168,7 +169,7 @@ namespace ease_admin_cloud.Areas.Identity.Pages.Account
                             var user_username = user.UserName;
                             var user_id = user.Id;
                             var user_terms_use = Input.terms_use;
-                            var addUsuarios = new usuario_control
+                            var addUsuarios = new tbl_usuario_control
                             {
                                 id_usuario_control = Guid.Parse(user_id),
                                 id_usuario_modifico = Guid.Empty,

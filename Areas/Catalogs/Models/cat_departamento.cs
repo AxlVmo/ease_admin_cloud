@@ -20,13 +20,17 @@ namespace ease_admin_cloud.Areas.Catalogs.Models
         public Guid id_usuario_modifico { get; set; }
 
         [NotMapped]
-         [Display(Name = "Usuario Modifico")]
+        [Display(Name = "Usuario Modifico")]
         public string usuario_modifico_desc { get; set; } = string.Empty;
 
         [Column("fecha_registro")]
         [DataType(DataType.Date)]
         [Display(Name = "Fecha Registro")]
         public DateTime fecha_registro { get; set; }
+
+        [Display(Name = "Fecha de Actualización")]
+        [DataType(DataType.Date)]
+        public DateTime fecha_actualizacion { get; set; }
 
         [Display(Name = "Estatus")]
         [Required(ErrorMessage = "Campo Requrido")]

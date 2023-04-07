@@ -10,7 +10,6 @@ using ease_admin_cloud.Data;
 using Microsoft.AspNetCore.Identity;
 using AspNetCoreHero.ToastNotification.Abstractions;
 
-
 namespace ease_admin_cloud.Areas.Catalogs.Controllers
 {
     [Area("Catalogs")]
@@ -18,9 +17,13 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
     {
         private readonly eacDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
-          private readonly INotyfService _toastNotification;
+        private readonly INotyfService _toastNotification;
 
-        public DepartamentosController(eacDbContext context, UserManager<IdentityUser> userManager,INotyfService toastNotification)
+        public DepartamentosController(
+            eacDbContext context,
+            UserManager<IdentityUser> userManager,
+            INotyfService toastNotification
+        )
         {
             _context = context;
             _userManager = userManager;
@@ -33,51 +36,61 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
         // GET: Catalogs/departamentos
         public async Task<IActionResult> Index()
         {
-                        var ValidaEstatus = _context.cat_estatus.ToList();
+            var val_estatus = _context.cat_estatus.ToList();
 
-            if (ValidaEstatus.Count == 2)
+            if (val_estatus.Count == 2)
             {
                 ViewBag.EstatusFlag = 1;
-                var ValidaEmpresa = _context.cat_empresas.ToList();
+                var val_empresa = _context.tbl_empresas.ToList();
 
-                if (ValidaEmpresa.Count == 1)
+                if (val_empresa.Count == 1)
                 {
                     ViewBag.EmpresaFlag = 1;
-                    var ValidaCorporativo = _context.cat_corporativos.ToList();
+                    var val_corporativo = _context.tbl_corporativos.ToList();
 
-                    if (ValidaCorporativo.Count >= 1)
+                    if (val_corporativo.Count >= 1)
                     {
                         ViewBag.CorporativoFlag = 1;
-                        
                     }
                     else
                     {
                         ViewBag.CorporativoFlag = 0;
-                        _toastNotification.Information("Favor de registrar los datos de Corporativo para la Aplicación", 5);
+                        _toastNotification.Information(
+                            "Favor de registrar los datos de Corporativo para la Aplicación",
+                            5
+                        );
                     }
                 }
                 else
                 {
                     ViewBag.EmpresaFlag = 0;
-                    _toastNotification.Information("Favor de registrar los datos de la Empresa para la Aplicación", 5);
+                    _toastNotification.Information(
+                        "Favor de registrar los datos de la Empresa para la Aplicación",
+                        5
+                    );
                 }
             }
             else
             {
                 ViewBag.EstatusFlag = 0;
-                _toastNotification.Information("Favor de registrar los Estatus para la Aplicación", 5);
+                _toastNotification.Information(
+                    "Favor de registrar los Estatus para la Aplicación",
+                    5
+                );
             }
-            var f_departamento = from a in _context.cat_departamentos
-                             join b in _context.usuarios_controles on a.id_usuario_modifico equals b.id_usuario_control
+            var f_departamento =
+                from a in _context.cat_departamentos
+                join b in _context.tbl_usuarios_controles
+                    on a.id_usuario_modifico equals b.id_usuario_control
 
-                             select new cat_departamento
-                             {
-                                 id_departamento = a.id_departamento,
-                                 departamento_desc = a.departamento_desc,
-                                 usuario_modifico_desc = b.nombre_usuario,
-                                 fecha_registro = a.fecha_registro,
-                                 id_estatus_registro = a.id_estatus_registro
-                             };
+                select new cat_departamento
+                {
+                    id_departamento = a.id_departamento,
+                    departamento_desc = a.departamento_desc,
+                    usuario_modifico_desc = b.nombre_usuario,
+                    fecha_registro = a.fecha_registro,
+                    id_estatus_registro = a.id_estatus_registro
+                };
 
             return View(await f_departamento.ToListAsync());
         }
@@ -90,7 +103,9 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
                 return NotFound();
             }
 
-            var cat_departamento = await _context.cat_departamentos.FirstOrDefaultAsync(m => m.id_departamento == id);
+            var cat_departamento = await _context.cat_departamentos.FirstOrDefaultAsync(
+                m => m.id_departamento == id
+            );
             if (cat_departamento == null)
             {
                 return NotFound();
@@ -110,7 +125,9 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id_departamento,departamento_desc")] cat_departamento cat_departamento)
+        public async Task<IActionResult> Create(
+            [Bind("id_departamento,departamento_desc")] cat_departamento cat_departamento
+        )
         {
             if (ModelState.IsValid)
             {
@@ -123,7 +140,10 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
                     IdentityUser usr = await GetCurrentUserAsync();
 
                     cat_departamento.fecha_registro = DateTime.Now;
-                    cat_departamento.departamento_desc = cat_departamento.departamento_desc.ToString().ToUpper().Trim();
+                    cat_departamento.departamento_desc = cat_departamento.departamento_desc
+                        .ToString()
+                        .ToUpper()
+                        .Trim();
                     cat_departamento.id_estatus_registro = 1;
                     cat_departamento.id_usuario_modifico = Guid.Parse(usr.Id);
                     _context.SaveChanges();
@@ -171,7 +191,8 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(
             int id,
-            [Bind("id_departamento,departamento_desc,id_estatus_registro")] cat_departamento cat_departamento
+            [Bind("id_departamento,departamento_desc,id_estatus_registro")]
+                cat_departamento cat_departamento
         )
         {
             if (id != cat_departamento.id_departamento)
@@ -210,7 +231,9 @@ namespace ease_admin_cloud.Areas.Catalogs.Controllers
                 return NotFound();
             }
 
-            var cat_departamento = await _context.cat_departamentos.FirstOrDefaultAsync(m => m.id_departamento == id);
+            var cat_departamento = await _context.cat_departamentos.FirstOrDefaultAsync(
+                m => m.id_departamento == id
+            );
             if (cat_departamento == null)
             {
                 return NotFound();

@@ -4,16 +4,20 @@ using ease_admin_cloud.Areas.Address.Models;
 using ease_admin_cloud.Areas.Users.Models;
 using ease_admin_cloud.Areas.Catalogs.Models;
 using ease_admin_cloud.Areas.Company.Models;
+using ease_admin_cloud.Models;
 
 namespace ease_admin_cloud.Data
 {
     public class eacDbContext : IdentityDbContext
     {
+
         public eacDbContext(DbContextOptions<eacDbContext> options)
             : base(options) { }
-
+        public DbSet<FileOnDatabaseModel> FilesOnDatabase { get; set; } = default!;
+        public DbSet<FileOnFileSystemModel> FilesOnFileSystem { get; set; } = default!;
         public DbSet<cat_codigo_postal> cat_codigos_postales { get; set; } = default!;
-        public DbSet<usuario_control> usuarios_controles { get; set; } = default!;
+        public DbSet<tbl_direccion> tbl_direcciones { get; set; } = default!;
+        public DbSet<tbl_usuario_control> tbl_usuarios_controles { get; set; } = default!;
         public DbSet<cat_estatus> cat_estatus { get; set; } = default!;
         public DbSet<cat_perfil> cat_perfiles { get; set; } = default!;
         public DbSet<cat_role> cat_roles { get; set; } = default!;
@@ -21,9 +25,11 @@ namespace ease_admin_cloud.Data
         public DbSet<cat_sub_departamento> cat_subs_departamentos { get; set; } = default!;
         public DbSet<cat_genero> cat_generos { get; set; } = default!;
         public DbSet<cat_categoria> cat_categorias { get; set; } = default!;
-        public DbSet<cat_empresa> cat_empresas { get; set; } = default!;
-        public DbSet<cat_centro> cat_centros { get; set; } = default!;
-        public DbSet<cat_corporativo> cat_corporativos { get; set; } = default!;
+        public DbSet<cat_marca> cat_marcas { get; set; } = default!;
+        public DbSet<cat_sub_categoria> cat_sub_categorias { get; set; } = default!;
+        public DbSet<tbl_empresa> tbl_empresas { get; set; } = default!;
+        public DbSet<tbl_filial> tbl_filiales { get; set; } = default!;
+        public DbSet<tbl_corporativo> tbl_corporativos { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -182,6 +188,24 @@ namespace ease_admin_cloud.Data
                     {
                         id_genero = 2,
                         genero_desc = "MUJER",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    }
+                );
+            modelBuilder
+                .Entity<cat_tipo_direccion>()
+                .HasData(
+                    new cat_tipo_direccion
+                    {
+                        id_tipo_direccion = 1,
+                        tipo_direccion_desc = "Particular",
+                        fecha_registro = DateTime.Today,
+                        id_estatus_registro = 1
+                    },
+                    new cat_tipo_direccion
+                    {
+                        id_tipo_direccion = 2,
+                        tipo_direccion_desc = "Fiscal",
                         fecha_registro = DateTime.Today,
                         id_estatus_registro = 1
                     }
@@ -28997,5 +29021,7 @@ namespace ease_admin_cloud.Data
 
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<ease_admin_cloud.Areas.Catalogs.Models.cat_tipo_direccion>? cat_tipo_direccion { get; set; }
     }
 }

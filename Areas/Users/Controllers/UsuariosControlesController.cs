@@ -20,18 +20,18 @@ namespace ease_admin_cloud.Areas.Users.Controllers
         // GET: Address/UsuariosControles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.usuarios_controles.ToListAsync());
+            return View(await _context.tbl_usuarios_controles.ToListAsync());
         }
 
         // GET: Address/UsuariosControles/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.usuarios_controles == null)
+            if (id == null || _context.tbl_usuarios_controles == null)
             {
                 return NotFound();
             }
 
-            var usuario_control = await _context.usuarios_controles.FirstOrDefaultAsync(
+            var usuario_control = await _context.tbl_usuarios_controles.FirstOrDefaultAsync(
                 m => m.id_usuario_control == id
             );
             if (usuario_control == null)
@@ -57,7 +57,7 @@ namespace ease_admin_cloud.Areas.Users.Controllers
             [Bind(
                 "id_usuario_control,nombres,apellido_paterno,apellido_materno,nombre_usuario,id_area,id_genero,id_perfil,id_rol,terminos_uso,fecha_nacimiento,correo_acceso,profile_picture,id_usuario_modifico,fecha_registro,fecha_actualizacion,id_estatus_registro"
             )]
-                usuario_control usuario_control
+                tbl_usuario_control usuario_control
         )
         {
             if (ModelState.IsValid)
@@ -73,12 +73,12 @@ namespace ease_admin_cloud.Areas.Users.Controllers
         // GET: Address/UsuariosControles/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.usuarios_controles == null)
+            if (id == null || _context.tbl_usuarios_controles == null)
             {
                 return NotFound();
             }
 
-            var usuario_control = await _context.usuarios_controles.FindAsync(id);
+            var usuario_control = await _context.tbl_usuarios_controles.FindAsync(id);
             if (usuario_control == null)
             {
                 return NotFound();
@@ -96,7 +96,7 @@ namespace ease_admin_cloud.Areas.Users.Controllers
             [Bind(
                 "id_usuario_control,nombres,apellido_paterno,apellido_materno,nombre_usuario,id_area,id_genero,id_perfil,id_rol,terminos_uso,fecha_nacimiento,correo_acceso,profile_picture,id_usuario_modifico,fecha_registro,fecha_actualizacion,id_estatus_registro"
             )]
-                usuario_control usuario_control
+                tbl_usuario_control usuario_control
         )
         {
             if (id != usuario_control.id_usuario_control)
@@ -130,12 +130,12 @@ namespace ease_admin_cloud.Areas.Users.Controllers
         // GET: Address/UsuariosControles/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.usuarios_controles == null)
+            if (id == null || _context.tbl_usuarios_controles == null)
             {
                 return NotFound();
             }
 
-            var usuario_control = await _context.usuarios_controles.FirstOrDefaultAsync(
+            var usuario_control = await _context.tbl_usuarios_controles.FirstOrDefaultAsync(
                 m => m.id_usuario_control == id
             );
             if (usuario_control == null)
@@ -151,14 +151,14 @@ namespace ease_admin_cloud.Areas.Users.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.usuarios_controles == null)
+            if (_context.tbl_usuarios_controles == null)
             {
-                return Problem("Entity set 'ApplicationDbContext.usuarios_controles'  is null.");
+                return Problem("Entity set 'ApplicationDbContext.tbl_usuarios_controles'  is null.");
             }
-            var usuario_control = await _context.usuarios_controles.FindAsync(id);
+            var usuario_control = await _context.tbl_usuarios_controles.FindAsync(id);
             if (usuario_control != null)
             {
-                _context.usuarios_controles.Remove(usuario_control);
+                _context.tbl_usuarios_controles.Remove(usuario_control);
             }
 
             await _context.SaveChangesAsync();
@@ -167,14 +167,14 @@ namespace ease_admin_cloud.Areas.Users.Controllers
 
         private bool usuario_controlExists(Guid id)
         {
-            return _context.usuarios_controles.Any(e => e.id_usuario_control == id);
+            return _context.tbl_usuarios_controles.Any(e => e.id_usuario_control == id);
         }
 
         [HttpGet, Route("~/FiltroUsuarioControl/")]
         public ActionResult FiltroUsuarioControl()
         {
             var f_usuario_control = (
-                from ta in _context.usuarios_controles
+                from ta in _context.tbl_usuarios_controles
                 where ta.id_area == 1 & ta.id_rol == 2 & ta.id_perfil == 1
                 select ta
             )

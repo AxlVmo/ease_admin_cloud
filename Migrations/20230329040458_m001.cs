@@ -53,16 +53,18 @@ namespace ease_admin_cloud.Migrations
                 name: "cat_categorias",
                 columns: table => new
                 {
-                    IdCategoria = table.Column<int>(type: "integer", nullable: false)
+                    id_categoria = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CategoriaDesc = table.Column<string>(type: "text", nullable: true),
+                    categoria_desc = table.Column<string>(type: "text", nullable: false),
+                    id_marca = table.Column<int>(type: "integer", nullable: false),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_cat_categorias", x => x.IdCategoria);
+                    table.PrimaryKey("PK_cat_categorias", x => x.id_categoria);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,6 +103,7 @@ namespace ease_admin_cloud.Migrations
                     departamento_desc = table.Column<string>(type: "text", nullable: false),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -129,9 +132,10 @@ namespace ease_admin_cloud.Migrations
                 {
                     id_genero = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    genero_desc = table.Column<string>(type: "text", nullable: true),
+                    genero_desc = table.Column<string>(type: "text", nullable: false),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -140,14 +144,32 @@ namespace ease_admin_cloud.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "cat_marcas",
+                columns: table => new
+                {
+                    id_marca = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    marca_desc = table.Column<string>(type: "text", nullable: false),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_marcas", x => x.id_marca);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "cat_perfiles",
                 columns: table => new
                 {
                     id_perfil = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    perfil_desc = table.Column<string>(type: "text", nullable: true),
+                    perfil_desc = table.Column<string>(type: "text", nullable: false),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -161,14 +183,33 @@ namespace ease_admin_cloud.Migrations
                 {
                     id_rol = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    rol_desc = table.Column<string>(type: "text", nullable: true),
+                    rol_desc = table.Column<string>(type: "text", nullable: false),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_cat_roles", x => x.id_rol);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "cat_sub_categorias",
+                columns: table => new
+                {
+                    id_sub_categoria = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    sub_categoria_desc = table.Column<string>(type: "text", nullable: false),
+                    id_categoria = table.Column<int>(type: "integer", nullable: false),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_sub_categorias", x => x.id_sub_categoria);
                 });
 
             migrationBuilder.CreateTable(
@@ -178,10 +219,11 @@ namespace ease_admin_cloud.Migrations
                     id_sub_departamento = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     sub_departamento_desc = table.Column<string>(type: "text", nullable: false),
+                    id_departamento = table.Column<int>(type: "integer", nullable: false),
                     id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
                     fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false),
-                    id_departamento = table.Column<int>(type: "integer", nullable: false)
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -189,7 +231,133 @@ namespace ease_admin_cloud.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "usuarios_controles",
+                name: "cat_tipo_direccion",
+                columns: table => new
+                {
+                    id_tipo_direccion = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    tipo_direccion_desc = table.Column<string>(type: "text", nullable: false),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_cat_tipo_direccion", x => x.id_tipo_direccion);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FilesOnDatabase",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Data = table.Column<byte[]>(type: "bytea", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    FileType = table.Column<string>(type: "text", nullable: true),
+                    Extension = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    UploadedBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FilesOnDatabase", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FilesOnFileSystem",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FilePath = table.Column<string>(type: "text", nullable: true),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    FileType = table.Column<string>(type: "text", nullable: true),
+                    Extension = table.Column<string>(type: "text", nullable: true),
+                    Description = table.Column<string>(type: "text", nullable: true),
+                    UploadedBy = table.Column<string>(type: "text", nullable: true),
+                    CreatedOn = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FilesOnFileSystem", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_corporativos",
+                columns: table => new
+                {
+                    id_corporativo = table.Column<Guid>(type: "uuid", nullable: false),
+                    nombre_corporativo = table.Column<string>(type: "text", nullable: false),
+                    calle = table.Column<string>(type: "text", nullable: false),
+                    codigo_postal = table.Column<string>(type: "text", nullable: false),
+                    id_colonia = table.Column<string>(type: "text", nullable: false),
+                    colonia = table.Column<string>(type: "text", nullable: false),
+                    localidad_municipio = table.Column<string>(type: "text", nullable: false),
+                    ciudad = table.Column<string>(type: "text", nullable: false),
+                    estado = table.Column<string>(type: "text", nullable: false),
+                    correo_electronico = table.Column<string>(type: "text", nullable: false),
+                    telefono = table.Column<string>(type: "text", nullable: false),
+                    id_empresa = table.Column<Guid>(type: "uuid", nullable: false),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_corporativos", x => x.id_corporativo);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_empresas",
+                columns: table => new
+                {
+                    id_empresa = table.Column<Guid>(type: "uuid", nullable: false),
+                    nombre_empresa = table.Column<string>(type: "text", nullable: false),
+                    rfc = table.Column<string>(type: "text", nullable: true),
+                    giro_comercial = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_empresas", x => x.id_empresa);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_filiales",
+                columns: table => new
+                {
+                    id_filial = table.Column<Guid>(type: "uuid", nullable: false),
+                    id_tipo_filial = table.Column<int>(type: "integer", nullable: false),
+                    nombre_filial = table.Column<string>(type: "text", nullable: false),
+                    calle = table.Column<string>(type: "text", nullable: true),
+                    codigo_postal = table.Column<string>(type: "text", nullable: true),
+                    id_colonia = table.Column<string>(type: "text", nullable: true),
+                    colonia = table.Column<string>(type: "text", nullable: true),
+                    localidad_municipio = table.Column<string>(type: "text", nullable: true),
+                    ciudad = table.Column<string>(type: "text", nullable: true),
+                    estado = table.Column<string>(type: "text", nullable: true),
+                    correo_electronico = table.Column<string>(type: "text", nullable: false),
+                    telefono = table.Column<string>(type: "text", nullable: true),
+                    id_corporativo = table.Column<Guid>(type: "uuid", nullable: false),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_filiales", x => x.id_filial);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_usuarios_controles",
                 columns: table => new
                 {
                     id_usuario_control = table.Column<Guid>(type: "uuid", nullable: false),
@@ -212,7 +380,7 @@ namespace ease_admin_cloud.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usuarios_controles", x => x.id_usuario_control);
+                    table.PrimaryKey("PK_tbl_usuarios_controles", x => x.id_usuario_control);
                 });
 
             migrationBuilder.CreateTable(
@@ -319,6 +487,38 @@ namespace ease_admin_cloud.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "tbl_direcciones",
+                columns: table => new
+                {
+                    id_direccion = table.Column<Guid>(type: "uuid", nullable: false),
+                    id_tipo_direccion = table.Column<string>(type: "text", nullable: false),
+                    calle = table.Column<string>(type: "text", nullable: false),
+                    codigo_postal = table.Column<string>(type: "text", nullable: false),
+                    id_colonia = table.Column<string>(type: "text", nullable: false),
+                    colonia = table.Column<string>(type: "text", nullable: true),
+                    localidad_municipio = table.Column<string>(type: "text", nullable: true),
+                    ciudad = table.Column<string>(type: "text", nullable: true),
+                    estado = table.Column<string>(type: "text", nullable: true),
+                    correo_electronico = table.Column<string>(type: "text", nullable: false),
+                    telefono_movil = table.Column<string>(type: "text", nullable: true),
+                    telefono_fijo = table.Column<string>(type: "text", nullable: true),
+                    id_usuario_modifico = table.Column<Guid>(type: "uuid", nullable: false),
+                    fecha_registro = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    fecha_actualizacion = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    id_estatus_registro = table.Column<int>(type: "integer", nullable: false),
+                    id_empresa1 = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_tbl_direcciones", x => x.id_direccion);
+                    table.ForeignKey(
+                        name: "FK_tbl_direcciones_tbl_empresas_id_empresa1",
+                        column: x => x.id_empresa1,
+                        principalTable: "tbl_empresas",
+                        principalColumn: "id_empresa");
                 });
 
             migrationBuilder.InsertData(
@@ -1853,16 +2053,16 @@ namespace ease_admin_cloud.Migrations
 
             migrationBuilder.InsertData(
                 table: "cat_departamentos",
-                columns: new[] { "id_departamento", "departamento_desc", "fecha_registro", "id_estatus_registro", "id_usuario_modifico" },
+                columns: new[] { "id_departamento", "departamento_desc", "fecha_actualizacion", "fecha_registro", "id_estatus_registro", "id_usuario_modifico" },
                 values: new object[,]
                 {
-                    { 1, "DIRECCIÓN", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 2, "ADMINISTRATIVA", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 3, "RECURSOS HUMANOS", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 4, "PRODUCCIÓN DIGITAL", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 5, "FINANZAS / CONTABILIDAD", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 6, "MÁRKETING / VENTAS", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 7, "TIC", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") }
+                    { 1, "DIRECCIÓN", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 2, "ADMINISTRATIVA", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 3, "RECURSOS HUMANOS", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 4, "PRODUCCIÓN DIGITAL", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 5, "FINANZAS / CONTABILIDAD", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 6, "MÁRKETING / VENTAS", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 7, "TIC", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000") }
                 });
 
             migrationBuilder.InsertData(
@@ -1870,40 +2070,49 @@ namespace ease_admin_cloud.Migrations
                 columns: new[] { "id_estatus", "estatus_desc", "fecha_registro", "id_usuario_modifico" },
                 values: new object[,]
                 {
-                    { 1, "ACTIVO", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 2, "DESACTIVO", new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), new Guid("00000000-0000-0000-0000-000000000000") }
+                    { 1, "ACTIVO", new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 2, "DESACTIVO", new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), new Guid("00000000-0000-0000-0000-000000000000") }
                 });
 
             migrationBuilder.InsertData(
                 table: "cat_generos",
-                columns: new[] { "id_genero", "fecha_registro", "genero_desc", "id_estatus_registro", "id_usuario_modifico" },
+                columns: new[] { "id_genero", "fecha_actualizacion", "fecha_registro", "genero_desc", "id_estatus_registro", "id_usuario_modifico" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), "HOMBRE", 1, new Guid("00000000-0000-0000-0000-000000000000") },
-                    { 2, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), "MUJER", 1, new Guid("00000000-0000-0000-0000-000000000000") }
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), "HOMBRE", 1, new Guid("00000000-0000-0000-0000-000000000000") },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), "MUJER", 1, new Guid("00000000-0000-0000-0000-000000000000") }
                 });
 
             migrationBuilder.InsertData(
                 table: "cat_perfiles",
-                columns: new[] { "id_perfil", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "perfil_desc" },
+                columns: new[] { "id_perfil", "fecha_actualizacion", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "perfil_desc" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DIRECTOR" },
-                    { 2, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "ADMINISTRADOR" },
-                    { 3, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "GERENTE" },
-                    { 4, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "EJECUTIVO" },
-                    { 5, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DOCENTE" }
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DIRECTOR" },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "ADMINISTRADOR" },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "GERENTE" },
+                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "EJECUTIVO" },
+                    { 5, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DOCENTE" }
                 });
 
             migrationBuilder.InsertData(
                 table: "cat_roles",
-                columns: new[] { "id_rol", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "rol_desc" },
+                columns: new[] { "id_rol", "fecha_actualizacion", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "rol_desc" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DESARROLLADOR" },
-                    { 2, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "ADMINISTRADOR" },
-                    { 3, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "SUPERVISOR" },
-                    { 4, new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "OPERADOR" }
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "DESARROLLADOR" },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "ADMINISTRADOR" },
+                    { 3, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "SUPERVISOR" },
+                    { 4, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "OPERADOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "cat_tipo_direccion",
+                columns: new[] { "id_tipo_direccion", "fecha_actualizacion", "fecha_registro", "id_estatus_registro", "id_usuario_modifico", "tipo_direccion_desc" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "Particular" },
+                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local), 1, new Guid("00000000-0000-0000-0000-000000000000"), "Fiscal" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -1942,6 +2151,11 @@ namespace ease_admin_cloud.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_tbl_direcciones_id_empresa1",
+                table: "tbl_direcciones",
+                column: "id_empresa1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1977,22 +2191,49 @@ namespace ease_admin_cloud.Migrations
                 name: "cat_generos");
 
             migrationBuilder.DropTable(
+                name: "cat_marcas");
+
+            migrationBuilder.DropTable(
                 name: "cat_perfiles");
 
             migrationBuilder.DropTable(
                 name: "cat_roles");
 
             migrationBuilder.DropTable(
+                name: "cat_sub_categorias");
+
+            migrationBuilder.DropTable(
                 name: "cat_subs_departamentos");
 
             migrationBuilder.DropTable(
-                name: "usuarios_controles");
+                name: "cat_tipo_direccion");
+
+            migrationBuilder.DropTable(
+                name: "FilesOnDatabase");
+
+            migrationBuilder.DropTable(
+                name: "FilesOnFileSystem");
+
+            migrationBuilder.DropTable(
+                name: "tbl_corporativos");
+
+            migrationBuilder.DropTable(
+                name: "tbl_direcciones");
+
+            migrationBuilder.DropTable(
+                name: "tbl_filiales");
+
+            migrationBuilder.DropTable(
+                name: "tbl_usuarios_controles");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "tbl_empresas");
         }
     }
 }

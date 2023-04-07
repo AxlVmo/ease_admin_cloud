@@ -41,5 +41,7 @@ namespace ease_admin_cloud.Areas.Address.Models
         public string d_zona { get; set; } = string.Empty;
 
         public string c_cveCiudad { get; set; } = string.Empty;
+
+
     }
 }

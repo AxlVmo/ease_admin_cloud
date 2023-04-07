@@ -1,0 +1,137 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<ease_admin_cloud.Areas.Address.Models.cat_codigo_postal>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <section class="panel">
+                <header class="panel-heading">
+                    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Catálogos Operativos /
+                        </span>Códigos Postales</h4>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-bordered table-striped mb-none" id="tbl_codigos_postales">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.d_codigo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.d_asenta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.d_tipoAsenta)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.d_mnpio)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.d_estado)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.d_ciudad)
+                                </th>
+                                <th>Información</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.d_codigo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.d_asenta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.d_tipoAsenta)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.d_mnpio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.d_estado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.d_ciudad)
+                                    </td>
+                                    <td style="text-align:center">
+                                        <a asp-action="Details" asp-route-id="@item.id_codigo_postal" title="Detalles">
+                                            <i class="fa-solid fa-circle-info" style="color: #0090D9;"></i>
+                                        </a>&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer">
+                    <a id="iNuevo" type="submit" class="btn btn-defaul" <i class="fas fa-plus"
+                        style="color: #4DD79C;"></i>
+                        Cargar / Actualizar los Datos
+                    </a>
+                </footer>
+            </section>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tbl_codigos_postales').DataTable(
+                {
+                    initComplete: function () {
+                        this.api()
+                            .columns()
+                            .every(function () {
+                                var column = this;
+                                var select = $('<select class="form-select">SELECCIONAR<option value=""></option></select>')
+                                    .appendTo($(column.footer()).empty())
+                                    .on('change', function () {
+                                        var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                                        column.search(val ? '^' + val + '$' : '', true, false).draw();
+                                    });
+                                column
+                                    .data()
+                                    .unique()
+                                    .sort()
+                                    .each(function (d, j) {
+                                        select.append('<option value="' + d + '">' + d + '</option>');
+                                    });
+                            });
+                    },
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                }
+            );
+        });
+    </script>
+}

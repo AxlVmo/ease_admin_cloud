@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ease_admin_cloud.Areas.Users.Models
 {
-    public class usuario_control
+    public class tbl_usuario_control
     {
         [Key]
         public Guid id_usuario_control { get; set; }
@@ -49,7 +49,7 @@ namespace ease_admin_cloud.Areas.Users.Models
         [DataType(DataType.Date)]
         public DateTime fecha_registro { get; set; }
 
-        [Display(Name = "Fecha de Actualizacion")]
+        [Display(Name = "Fecha de Actualización")]
         [DataType(DataType.Date)]
         public DateTime fecha_actualizacion { get; set; }
 

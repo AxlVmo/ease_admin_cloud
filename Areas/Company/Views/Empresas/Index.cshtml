@@ -1,0 +1,74 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<ease_admin_cloud.Areas.Company.Models.tbl_empresa>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rfc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.giro_comercial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_usuario_modifico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_registro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_actualizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_estatus_registro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rfc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.giro_comercial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_usuario_modifico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_registro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_actualizacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_estatus_registro)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.id_empresa">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id_empresa">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id_empresa">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

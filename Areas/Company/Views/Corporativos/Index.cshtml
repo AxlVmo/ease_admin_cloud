@@ -1,0 +1,145 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<ease_admin_cloud.Areas.Company.Models.tbl_corporativo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre_corporativo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.calle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codigo_postal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_colonia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.colonia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.localidad_municipio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ciudad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.correo_electronico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_usuario_modifico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_registro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha_actualizacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.id_estatus_registro)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre_corporativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.calle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigo_postal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_colonia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.colonia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.localidad_municipio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ciudad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.correo_electronico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_empresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_usuario_modifico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_registro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_actualizacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_estatus_registro)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id_corporativo">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id_corporativo">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id_corporativo">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var estatus_flag = '@ViewBag.EstatusFlag'
+            var empresa_flag = '@ViewBag.EmpresaFlag'
+            if (estatus_flag == 0) {
+                document.getElementById("iNuevo").style.visibility = "hidden";
+            }
+            else {
+                if (empresa_flag == 0) {
+                    document.getElementById("iNuevo").style.visibility = "hidden";
+                }
+                else {
+                    document.getElementById("iNuevo").style.visibility = "visible";
+                }
+            }
+        });
+    </script>
+}

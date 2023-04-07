@@ -12,14 +12,14 @@ using ease_admin_cloud.Data;
 namespace ease_admin_cloud.Migrations
 {
     [DbContext(typeof(eacDbContext))]
-    [Migration("20230316221918_m001")]
+    [Migration("20230329040458_m001")]
     partial class m001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.14")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -28904,16 +28904,87 @@ namespace ease_admin_cloud.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ease_admin_cloud.Areas.Address.Models.tbl_direccion", b =>
+                {
+                    b.Property<Guid>("id_direccion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("calle")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ciudad")
+                        .HasColumnType("text");
+
+                    b.Property<string>("codigo_postal")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("colonia")
+                        .HasColumnType("text");
+
+                    b.Property<string>("correo_electronico")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<string>("id_colonia")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid?>("id_empresa1")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("id_tipo_direccion")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("localidad_municipio")
+                        .HasColumnType("text");
+
+                    b.Property<string>("telefono_fijo")
+                        .HasColumnType("text");
+
+                    b.Property<string>("telefono_movil")
+                        .HasColumnType("text");
+
+                    b.HasKey("id_direccion");
+
+                    b.HasIndex("id_empresa1");
+
+                    b.ToTable("tbl_direcciones");
+                });
+
             modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_categoria", b =>
                 {
-                    b.Property<int>("IdCategoria")
+                    b.Property<int>("id_categoria")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("IdCategoria"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_categoria"));
 
-                    b.Property<string>("CategoriaDesc")
+                    b.Property<string>("categoria_desc")
+                        .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("fecha_registro")
                         .HasColumnType("timestamp without time zone")
@@ -28922,10 +28993,13 @@ namespace ease_admin_cloud.Migrations
                     b.Property<int>("id_estatus_registro")
                         .HasColumnType("integer");
 
+                    b.Property<int>("id_marca")
+                        .HasColumnType("integer");
+
                     b.Property<Guid>("id_usuario_modifico")
                         .HasColumnType("uuid");
 
-                    b.HasKey("IdCategoria");
+                    b.HasKey("id_categoria");
 
                     b.ToTable("cat_categorias");
                 });
@@ -28941,6 +29015,9 @@ namespace ease_admin_cloud.Migrations
                     b.Property<string>("departamento_desc")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("fecha_registro")
                         .HasColumnType("timestamp without time zone")
@@ -28961,7 +29038,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 1,
                             departamento_desc = "DIRECCIÓN",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -28969,7 +29047,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 2,
                             departamento_desc = "ADMINISTRATIVA",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -28977,7 +29056,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 3,
                             departamento_desc = "RECURSOS HUMANOS",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -28985,7 +29065,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 4,
                             departamento_desc = "PRODUCCIÓN DIGITAL",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -28993,7 +29074,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 5,
                             departamento_desc = "FINANZAS / CONTABILIDAD",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -29001,7 +29083,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 6,
                             departamento_desc = "MÁRKETING / VENTAS",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
@@ -29009,7 +29092,8 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_departamento = 7,
                             departamento_desc = "TIC",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         });
@@ -29042,14 +29126,14 @@ namespace ease_admin_cloud.Migrations
                         {
                             id_estatus = 1,
                             estatus_desc = "ACTIVO",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         },
                         new
                         {
                             id_estatus = 2,
                             estatus_desc = "DESACTIVO",
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         });
                 });
@@ -29062,11 +29146,15 @@ namespace ease_admin_cloud.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_genero"));
 
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<DateTime>("fecha_registro")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("fecha_registro");
 
                     b.Property<string>("genero_desc")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("id_estatus_registro")
@@ -29083,7 +29171,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_genero = 1,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             genero_desc = "HOMBRE",
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
@@ -29091,11 +29180,42 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_genero = 2,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             genero_desc = "MUJER",
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000")
                         });
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_marca", b =>
+                {
+                    b.Property<int>("id_marca")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_marca"));
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("marca_desc")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id_marca");
+
+                    b.ToTable("cat_marcas");
                 });
 
             modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_perfil", b =>
@@ -29105,6 +29225,9 @@ namespace ease_admin_cloud.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_perfil"));
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("fecha_registro")
                         .HasColumnType("timestamp without time zone")
@@ -29117,6 +29240,7 @@ namespace ease_admin_cloud.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("perfil_desc")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("id_perfil");
@@ -29127,7 +29251,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 1,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "DIRECTOR"
@@ -29135,7 +29260,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 2,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "ADMINISTRADOR"
@@ -29143,7 +29269,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 3,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "GERENTE"
@@ -29151,7 +29278,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 4,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "EJECUTIVO"
@@ -29159,7 +29287,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_perfil = 5,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             perfil_desc = "DOCENTE"
@@ -29174,6 +29303,9 @@ namespace ease_admin_cloud.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_rol"));
 
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
                     b.Property<DateTime>("fecha_registro")
                         .HasColumnType("timestamp without time zone")
                         .HasColumnName("fecha_registro");
@@ -29185,6 +29317,7 @@ namespace ease_admin_cloud.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("rol_desc")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("id_rol");
@@ -29195,7 +29328,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 1,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "DESARROLLADOR"
@@ -29203,7 +29337,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 2,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "ADMINISTRADOR"
@@ -29211,7 +29346,8 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 3,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "SUPERVISOR"
@@ -29219,11 +29355,45 @@ namespace ease_admin_cloud.Migrations
                         new
                         {
                             id_rol = 4,
-                            fecha_registro = new DateTime(2023, 3, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
                             id_estatus_registro = 1,
                             id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
                             rol_desc = "OPERADOR"
                         });
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_sub_categoria", b =>
+                {
+                    b.Property<int>("id_sub_categoria")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_sub_categoria"));
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<int>("id_categoria")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("sub_categoria_desc")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id_sub_categoria");
+
+                    b.ToTable("cat_sub_categorias");
                 });
 
             modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_sub_departamento", b =>
@@ -29233,6 +29403,9 @@ namespace ease_admin_cloud.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_sub_departamento"));
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("fecha_registro")
                         .HasColumnType("timestamp without time zone")
@@ -29256,7 +29429,220 @@ namespace ease_admin_cloud.Migrations
                     b.ToTable("cat_subs_departamentos");
                 });
 
-            modelBuilder.Entity("ease_admin_cloud.Areas.Users.Models.usuario_control", b =>
+            modelBuilder.Entity("ease_admin_cloud.Areas.Catalogs.Models.cat_tipo_direccion", b =>
+                {
+                    b.Property<int>("id_tipo_direccion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id_tipo_direccion"));
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("tipo_direccion_desc")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id_tipo_direccion");
+
+                    b.ToTable("cat_tipo_direccion");
+
+                    b.HasData(
+                        new
+                        {
+                            id_tipo_direccion = 1,
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
+                            tipo_direccion_desc = "Particular"
+                        },
+                        new
+                        {
+                            id_tipo_direccion = 2,
+                            fecha_actualizacion = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            fecha_registro = new DateTime(2023, 3, 28, 0, 0, 0, 0, DateTimeKind.Local),
+                            id_estatus_registro = 1,
+                            id_usuario_modifico = new Guid("00000000-0000-0000-0000-000000000000"),
+                            tipo_direccion_desc = "Fiscal"
+                        });
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Company.Models.tbl_corporativo", b =>
+                {
+                    b.Property<Guid>("id_corporativo")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("calle")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ciudad")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("codigo_postal")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("colonia")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("correo_electronico")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("estado")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<string>("id_colonia")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("id_empresa")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("localidad_municipio")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("nombre_corporativo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("telefono")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("id_corporativo");
+
+                    b.ToTable("tbl_corporativos");
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Company.Models.tbl_empresa", b =>
+                {
+                    b.Property<Guid>("id_empresa")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<string>("giro_comercial")
+                        .HasColumnType("text");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("nombre_empresa")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("rfc")
+                        .HasColumnType("text");
+
+                    b.HasKey("id_empresa");
+
+                    b.ToTable("tbl_empresas");
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Company.Models.tbl_filial", b =>
+                {
+                    b.Property<Guid>("id_filial")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("calle")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ciudad")
+                        .HasColumnType("text");
+
+                    b.Property<string>("codigo_postal")
+                        .HasColumnType("text");
+
+                    b.Property<string>("colonia")
+                        .HasColumnType("text");
+
+                    b.Property<string>("correo_electronico")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("estado")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("fecha_actualizacion")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("fecha_registro")
+                        .HasColumnType("timestamp without time zone")
+                        .HasColumnName("fecha_registro");
+
+                    b.Property<string>("id_colonia")
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("id_corporativo")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("id_estatus_registro")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("id_tipo_filial")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("id_usuario_modifico")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("localidad_municipio")
+                        .HasColumnType("text");
+
+                    b.Property<string>("nombre_filial")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("telefono")
+                        .HasColumnType("text");
+
+                    b.HasKey("id_filial");
+
+                    b.ToTable("tbl_filiales");
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Users.Models.tbl_usuario_control", b =>
                 {
                     b.Property<Guid>("id_usuario_control")
                         .ValueGeneratedOnAdd()
@@ -29314,7 +29700,75 @@ namespace ease_admin_cloud.Migrations
 
                     b.HasKey("id_usuario_control");
 
-                    b.ToTable("usuarios_controles");
+                    b.ToTable("tbl_usuarios_controles");
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Models.FileOnDatabaseModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<byte[]>("Data")
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UploadedBy")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FilesOnDatabase");
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Models.FileOnFileSystemModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedOn")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FilePath")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("UploadedBy")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FilesOnFileSystem");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -29517,6 +29971,15 @@ namespace ease_admin_cloud.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ease_admin_cloud.Areas.Address.Models.tbl_direccion", b =>
+                {
+                    b.HasOne("ease_admin_cloud.Areas.Company.Models.tbl_empresa", "id_empresa")
+                        .WithMany("tbl_direcciones")
+                        .HasForeignKey("id_empresa1");
+
+                    b.Navigation("id_empresa");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -29566,6 +30029,11 @@ namespace ease_admin_cloud.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("ease_admin_cloud.Areas.Company.Models.tbl_empresa", b =>
+                {
+                    b.Navigation("tbl_direcciones");
                 });
 #pragma warning restore 612, 618
         }
